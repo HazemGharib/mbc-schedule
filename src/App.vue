@@ -1,8 +1,12 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark></v-app-bar>
+    <v-app-bar app color="red lighten-1" dark shrink-on-scroll></v-app-bar>
 
-    <v-main></v-main>
+    <v-main>
+      <v-sheet id="scroll-target">
+        <router-view class="router-view" />
+      </v-sheet>
+    </v-main>
   </v-app>
 </template>
 
@@ -17,3 +21,9 @@ export default Vue.extend({
   data: () => ({})
 });
 </script>
+
+<style>
+.router-view {
+  margin: 2em;
+}
+</style>
