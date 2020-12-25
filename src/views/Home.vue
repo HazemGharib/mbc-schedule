@@ -24,12 +24,12 @@
                 ${checkTime(new Date(movie.endTime).getMinutes())}`
               }}
             </div>
-            <v-list-item-title class="text-right headline mb-1">
+            <v-list-item-title class="rtl text-right headline mb-1">
               {{ movie.showPageTitle }}
             </v-list-item-title>
-            <v-list-item-subtitle class="text-right ">
+            <v-card-subtitle class="rtl text-right ">
               {{ movie.showPageAboutInArabic }}
-            </v-list-item-subtitle>
+            </v-card-subtitle>
           </v-list-item-content>
         </v-list-item>
 
@@ -70,6 +70,7 @@ export default {
       from: now.getTime(),
       to: nextWeek.getTime()
     }).then(({ data }) => {
+      console.log(data);
       this.movies = data;
     });
   },
@@ -97,5 +98,8 @@ export default {
 <style scoped>
 .progress {
   width: 12em;
+}
+.rtl {
+  direction: rtl;
 }
 </style>
