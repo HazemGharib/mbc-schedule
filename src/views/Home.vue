@@ -1,105 +1,161 @@
 <template>
   <div class="home">
-    <div class="container" v-if="movies">
-      <v-card
-        v-for="movie in movies"
-        :key="movie.id"
-        class="mx-auto my-8 py-4"
-        color="grey lighten-3"
-      >
-        <v-list-item three-line>
-          <v-list-item-content>
-            <div class="text-right subtitle-2">
-              {{ getDayName(movie.startTime) }}
-            </div>
-            <div class="text-right overline">
-              {{ new Date(movie.startTime).toLocaleDateString() }}
-            </div>
-            <div class="text-right caption mb-4">
-              {{
-                `${checkTime(new Date(movie.startTime).getHours())} : 
-                ${checkTime(new Date(movie.startTime).getMinutes())} 
-                - 
-                ${checkTime(new Date(movie.endTime).getHours())} : 
-                ${checkTime(new Date(movie.endTime).getMinutes())}`
-              }}
-            </div>
-            <v-list-item-title class="rtl text-right headline mb-1">
-              {{ movie.showPageTitle }}
-            </v-list-item-title>
-            <v-card-subtitle class="rtl text-right ">
-              {{ movie.showPageAboutInArabic }}
-            </v-card-subtitle>
-          </v-list-item-content>
-        </v-list-item>
+    <v-card>
+      <v-toolbar flat color="blue darken-1" dark>
+        <v-spacer />
+        <v-toolbar-title>جدول البرامج</v-toolbar-title>
+      </v-toolbar>
+      <v-tabs v-model="defaultTab" vertical>
+        <v-tab>
+          MBC 1
+        </v-tab>
 
-        <v-card-actions class="justify-end">
-          <v-chip color="orange darken-2" dark>
-            {{ movie.showPageGenreInArabic }}
-          </v-chip>
-        </v-card-actions>
-      </v-card>
-    </div>
-    <div class="mx-auto my-16 progress" v-else>
-      <v-progress-circular
-        color="yellow darken-3"
-        size="200"
-        width="10"
-        indeterminate
-      />
-    </div>
+        <v-tab>
+          MBC 2
+        </v-tab>
+
+        <v-tab>
+          MBC 4
+        </v-tab>
+
+        <v-tab>
+          MBC 5
+        </v-tab>
+
+        <v-tab>
+          MBC Action
+        </v-tab>
+
+        <v-tab>
+          MBC Max
+        </v-tab>
+
+        <v-tab>
+          MBC Drama
+        </v-tab>
+
+        <v-tab>
+          MBC Drama +
+        </v-tab>
+
+        <v-tab>
+          MBC Masr
+        </v-tab>
+
+        <v-tab>
+          MBC Masr 2
+        </v-tab>
+
+        <v-tab>
+          MBC Bollywood
+        </v-tab>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc1" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc2" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc4" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc5" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc-action" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc-max" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc-drama" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc-drama-plus" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc-maser" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc-maser2" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <ChannelTab channel="mbc-bollywood" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+      </v-tabs>
+    </v-card>
   </div>
 </template>
 
 <script>
-import { getMovieSchedule } from "@/services/movieScheduleService";
+import ChannelTab from "@/components/ChannelTab";
 export default {
   name: "Home",
-  components: {},
+  components: {
+    ChannelTab
+  },
   data() {
     return {
-      movies: null
+      defaultTab: null
     };
   },
   mounted() {
-    const now = new Date();
-    const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-
-    getMovieSchedule({
-      channel: "mbc2",
-      from: now.getTime(),
-      to: nextWeek.getTime()
-    }).then(({ data }) => {
-      console.log(data);
-      this.movies = data;
-    });
-  },
-  methods: {
-    getDayName(date) {
-      const days = [
-        "الاحد",
-        "الاثنين",
-        "الثلاثاء",
-        "الاربعاء",
-        "الخميس",
-        "الجمعة",
-        "السبت"
-      ];
-      const d = new Date(date);
-      return days[d.getDay()];
-    },
-    checkTime(t) {
-      return t < 10 ? "0" + t : t;
-    }
+    this.defaultTab = 1;
   }
 };
 </script>
-
-<style scoped>
-.progress {
-  width: 12em;
-}
-.rtl {
-  direction: rtl;
-}
-</style>

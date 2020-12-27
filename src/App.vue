@@ -4,7 +4,7 @@
       <v-spacer />
       <v-img
         :src="require('@/assets/logo.png')"
-        class="shrink"
+        class="shrink invert"
         contain
         transition="scale-transition"
         height="100%"
@@ -13,18 +13,6 @@
 
     <v-main>
       <v-sheet id="scroll-target">
-        <v-alert
-          class="mx-12 mt-16"
-          border="left"
-          color="orange darken-2"
-          dense
-          dismissible
-          outlined
-          text
-          type="error"
-        >
-          Only MBC 2 is available now
-        </v-alert>
         <router-view class="router-view" />
       </v-sheet>
     </v-main>
@@ -46,5 +34,8 @@ export default Vue.extend({
 <style>
 .router-view {
   margin: 2em;
+}
+.invert {
+  filter: invert(100%);
 }
 </style>
