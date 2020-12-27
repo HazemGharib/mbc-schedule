@@ -82,7 +82,6 @@ export default {
         ...item,
         showingNow: index === 0
       }));
-      console.log(this.movies);
     });
   },
   methods: {

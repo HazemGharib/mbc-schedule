@@ -5,52 +5,54 @@
         <v-spacer />
         <v-toolbar-title>جدول البرامج</v-toolbar-title>
       </v-toolbar>
-      <v-tabs v-model="defaultTab" vertical>
-        <v-tab>
+      <v-tabs v-model="tab" touchless>
+        <v-tab key="mbc1">
           MBC 1
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc2">
           MBC 2
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc4">
           MBC 4
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc5">
           MBC 5
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc-action">
           MBC Action
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc-max">
           MBC Max
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc-drama">
           MBC Drama
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc-drama-plus">
           MBC Drama +
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc-maser">
           MBC Masr
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc-maser2">
           MBC Masr 2
         </v-tab>
 
-        <v-tab>
+        <v-tab key="mbc-bollywood">
           MBC Bollywood
         </v-tab>
+      </v-tabs>
 
-        <v-tab-item>
+      <v-tabs-items v-model="tab" touchless>
+        <v-tab-item key="mbc1">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc1" />
@@ -58,7 +60,7 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc2">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc2" />
@@ -66,7 +68,7 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc4">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc4" />
@@ -74,7 +76,7 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc5">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc5" />
@@ -82,7 +84,7 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc-action">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc-action" />
@@ -90,7 +92,7 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc-max">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc-max" />
@@ -98,7 +100,7 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc-drama">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc-drama" />
@@ -106,7 +108,7 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc-drama-plus">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc-drama-plus" />
@@ -114,7 +116,7 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc-maser">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc-maser" />
@@ -122,7 +124,7 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc-maser2">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc-maser2" />
@@ -130,14 +132,14 @@
           </v-card>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item key="mbc-bollywood">
           <v-card flat>
             <v-card-text>
               <ChannelTab channel="mbc-bollywood" />
             </v-card-text>
           </v-card>
         </v-tab-item>
-      </v-tabs>
+      </v-tabs-items>
     </v-card>
   </div>
 </template>
@@ -151,11 +153,11 @@ export default {
   },
   data() {
     return {
-      defaultTab: null
+      tab: undefined
     };
   },
   mounted() {
-    this.defaultTab = 1;
+    this.tab = 1;
   }
 };
 </script>
