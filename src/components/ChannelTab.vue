@@ -115,7 +115,7 @@ export default {
 
 .copy-box {
   position: relative;
-  display: inline-block;
+  display: contents;
   margin: 0 auto;
   width: 200px;
   color: #333333;
@@ -157,5 +157,6 @@ export default {
 }
 .copy-box .inner {
   padding: 30px;
+  margin-left: 4em;
 }
 </style>
